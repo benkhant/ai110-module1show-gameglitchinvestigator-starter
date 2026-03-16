@@ -30,7 +30,7 @@ It wrote the code, ran away, and now the game is unplayable.
 
 - [x] Detail which bugs you found.
   - The app had persistent state issues: the secret number could get stale across difficulty changes and new games, and hints were inconsistent. There was also a TypeError from comparing ints and strings and a ValueError from unpacking the wrong return shape.
-  
+
 - [x] Explain what fixes you applied.
   - I refactored logic into `logic_utils.py`, fixed `new_game` and difficulty resets to update session state, ensured `check_guess` returns `(outcome, message)`, and updated the UI logic to use these values correctly. I also added and ran pytest regression tests to verify behavior.
 
@@ -40,4 +40,7 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 🚀 Stretch Features
 
-- [ ] [If you choose to complete Challenge 4, insert a screenshot of your Enhanced Game UI here]
+- [x] Challenge 4: Enhanced Game UI with color-coded hints, hot/cold indicator, and session summary table.
+
+![Enhanced Game UI Screenshot](enhanced_ui.png)
+

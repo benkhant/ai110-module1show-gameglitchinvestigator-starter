@@ -52,6 +52,9 @@ if "status" not in st.session_state:
 if "history" not in st.session_state:
     st.session_state.history = []
 
+if "summary" not in st.session_state:
+    st.session_state.summary = []
+
 st.subheader("Make a guess")
 
 st.info(
@@ -87,6 +90,7 @@ if new_game:
         "score": st.session_state.score,
         "status": st.session_state.status,
         "history": st.session_state.history,
+        "summary": st.session_state.summary,
     }
     reset_game_state(state, low, high)
     st.session_state.attempts = state["attempts"]
@@ -94,6 +98,7 @@ if new_game:
     st.session_state.score = state["score"]
     st.session_state.status = state["status"]
     st.session_state.history = state["history"]
+    st.session_state.summary = state["summary"]
     st.success("New game started.")
     st.rerun()
 
@@ -116,15 +121,22 @@ if submit:
         st.session_state.history.append(guess_int)
 
         outcome, message = check_guess(guess_int, st.session_state.secret)
-        if outcome == "Win":
-            message = "🎉 Correct!"
-        elif outcome == "Too High":
-            message = "📉 Go LOWER!"
-        else:
-            message = "📈 Go HIGHER!"
+        hot_cold = "🔥 Hot" if abs(guess_int - st.session_state.secret) <= 5 else "❄️ Cold"
+        st.session_state.summary.append({
+            "Attempt": st.session_state.attempts,
+            "Guess": guess_int,
+            "Outcome": outcome,
+            "Hint": message,
+            "Hot/Cold": hot_cold,
+        })
 
         if show_hint:
-            st.warning(message)
+            if outcome == "Win":
+                st.success(message)
+            elif outcome == "Too High":
+                st.warning(f"{message} {hot_cold}")
+            else:
+                st.info(f"{message} {hot_cold}")
 
         st.session_state.score = update_score(
             current_score=st.session_state.score,
@@ -147,6 +159,11 @@ if submit:
                     f"The secret was {st.session_state.secret}. "
                     f"Score: {st.session_state.score}"
                 )
+
+# Output structured summary table for session.
+if st.session_state.summary:
+    st.markdown("### 🧾 Game Session Summary")
+    st.table(st.session_state.summary)
 
 st.divider()
 st.caption("Built by an AI that claims this code is production-ready.")
