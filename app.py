@@ -121,7 +121,6 @@ st.subheader("Make a guess")
 st.info(
     f"Guess a number between 1 and 100. "
     f"Attempts left: {attempt_limit - st.session_state.attempts}"
-=======
     f"Guess a number between {low} and {high}. "
     f"Attempts left: {attempt_limit - st.session_state.attempts + 1}"
 )
@@ -149,7 +148,7 @@ with col3:
 if new_game:
     st.session_state.attempts = 0
     st.session_state.secret = random.randint(1, 100)
-=======
+
 # FIX: Copilot collaborative fix for New Game reset; uses helper from logic_utils.
 if new_game:
     state = {
