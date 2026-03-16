@@ -43,4 +43,3 @@ It wrote the code, ran away, and now the game is unplayable.
 - [x] Challenge 4: Enhanced Game UI with color-coded hints, hot/cold indicator, and session summary table.
 
 ![Enhanced Game UI Screenshot](enhanced_ui.png)
-

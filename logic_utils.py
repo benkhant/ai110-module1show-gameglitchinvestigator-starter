@@ -71,4 +71,5 @@ def reset_game_state(state: dict, low: int, high: int):
     state["score"] = 0
     state["status"] = "playing"
     state["history"] = []
+    state["summary"] = []
     return state
