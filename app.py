@@ -1,6 +1,5 @@
 import random
 import streamlit as st
-<<<<<<< HEAD
 
 def get_range_for_difficulty(difficulty: str):
     if difficulty == "Easy":
@@ -65,11 +64,9 @@ def update_score(current_score: int, outcome: str, attempt_number: int):
 
     return current_score
 
-=======
 from logic_utils import get_range_for_difficulty, parse_guess, check_guess, update_score, reset_game_state
 
 # FIX: Refactored game logic into logic_utils.py using Copilot Agent mode.
->>>>>>> 536293a (Fix Streamlit game state bugs and logic refactor)
 st.set_page_config(page_title="Glitchy Guesser", page_icon="🎮")
 
 st.title("🎮 Game Glitch Investigator")
@@ -95,8 +92,6 @@ low, high = get_range_for_difficulty(difficulty)
 st.sidebar.caption(f"Range: {low} to {high}")
 st.sidebar.caption(f"Attempts allowed: {attempt_limit}")
 
-<<<<<<< HEAD
-=======
 # FIX: Reset full game state when difficulty changes, preventing stale secret values.
 if "difficulty" not in st.session_state or st.session_state.difficulty != difficulty:
     st.session_state.difficulty = difficulty
@@ -106,7 +101,6 @@ if "difficulty" not in st.session_state or st.session_state.difficulty != diffic
     st.session_state.status = "playing"
     st.session_state.history = []
 
->>>>>>> 536293a (Fix Streamlit game state bugs and logic refactor)
 if "secret" not in st.session_state:
     st.session_state.secret = random.randint(low, high)
 
@@ -125,13 +119,11 @@ if "history" not in st.session_state:
 st.subheader("Make a guess")
 
 st.info(
-<<<<<<< HEAD
     f"Guess a number between 1 and 100. "
     f"Attempts left: {attempt_limit - st.session_state.attempts}"
 =======
     f"Guess a number between {low} and {high}. "
     f"Attempts left: {attempt_limit - st.session_state.attempts + 1}"
->>>>>>> 536293a (Fix Streamlit game state bugs and logic refactor)
 )
 
 with st.expander("Developer Debug Info"):
@@ -154,7 +146,6 @@ with col2:
 with col3:
     show_hint = st.checkbox("Show hint", value=True)
 
-<<<<<<< HEAD
 if new_game:
     st.session_state.attempts = 0
     st.session_state.secret = random.randint(1, 100)
@@ -174,7 +165,6 @@ if new_game:
     st.session_state.score = state["score"]
     st.session_state.status = state["status"]
     st.session_state.history = state["history"]
->>>>>>> 536293a (Fix Streamlit game state bugs and logic refactor)
     st.success("New game started.")
     st.rerun()
 
@@ -196,14 +186,12 @@ if submit:
     else:
         st.session_state.history.append(guess_int)
 
-<<<<<<< HEAD
         if st.session_state.attempts % 2 == 0:
             secret = str(st.session_state.secret)
         else:
             secret = st.session_state.secret
 
         outcome, message = check_guess(guess_int, secret)
-=======
         outcome = check_guess(guess_int, st.session_state.secret)
         if outcome == "Win":
             message = "🎉 Correct!"
@@ -211,7 +199,6 @@ if submit:
             message = "📉 Go LOWER!"
         else:
             message = "📈 Go HIGHER!"
->>>>>>> 536293a (Fix Streamlit game state bugs and logic refactor)
 
         if show_hint:
             st.warning(message)
