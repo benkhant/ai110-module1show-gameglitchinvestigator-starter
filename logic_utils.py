@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-def get_range_for_difficulty(difficulty: str):
-    """Return (low, high) inclusive range for a given difficulty."""
-    raise NotImplementedError("Refactor this function from app.py into logic_utils.py")
-=======
 import random
 
 def get_range_for_difficulty(difficulty: str):
@@ -14,7 +9,6 @@ def get_range_for_difficulty(difficulty: str):
     if difficulty == "Hard":
         return 1, 50
     return 1, 100
->>>>>>> 536293a (Fix Streamlit game state bugs and logic refactor)
 
 
 def parse_guess(raw: str):
@@ -23,9 +17,6 @@ def parse_guess(raw: str):
 
     Returns: (ok: bool, guess_int: int | None, error_message: str | None)
     """
-<<<<<<< HEAD
-    raise NotImplementedError("Refactor this function from app.py into logic_utils.py")
-=======
     if raw is None or raw == "":
         return False, None, "Enter a guess."
 
@@ -38,7 +29,6 @@ def parse_guess(raw: str):
         return False, None, "That is not a number."
 
     return True, value, None
->>>>>>> 536293a (Fix Streamlit game state bugs and logic refactor)
 
 
 def check_guess(guess, secret):
@@ -47,22 +37,15 @@ def check_guess(guess, secret):
 
     outcome examples: "Win", "Too High", "Too Low"
     """
-<<<<<<< HEAD
-    raise NotImplementedError("Refactor this function from app.py into logic_utils.py")
-=======
     if guess == secret:
         return "Win"
     if guess > secret:
         return "Too High"
     return "Too Low"
->>>>>>> 536293a (Fix Streamlit game state bugs and logic refactor)
 
 
 def update_score(current_score: int, outcome: str, attempt_number: int):
     """Update score based on outcome and attempt number."""
-<<<<<<< HEAD
-    raise NotImplementedError("Refactor this function from app.py into logic_utils.py")
-=======
     if outcome == "Win":
         points = 100 - 10 * (attempt_number + 1)
         if points < 10:
@@ -89,4 +72,3 @@ def reset_game_state(state: dict, low: int, high: int):
     state["status"] = "playing"
     state["history"] = []
     return state
->>>>>>> 536293a (Fix Streamlit game state bugs and logic refactor)

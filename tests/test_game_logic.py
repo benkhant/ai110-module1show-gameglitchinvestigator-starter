@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-from logic_utils import check_guess
-=======
 from logic_utils import check_guess, reset_game_state
->>>>>>> 536293a (Fix Streamlit game state bugs and logic refactor)
 
 def test_winning_guess():
     # If the secret is 50 and guess is 50, it should be a win
@@ -18,8 +14,6 @@ def test_guess_too_low():
     # If secret is 50 and guess is 40, hint should be "Too Low"
     result = check_guess(40, 50)
     assert result == "Too Low"
-<<<<<<< HEAD
-=======
 
 def test_reset_game_state_resets_status_and_history():
     state = {
@@ -36,4 +30,3 @@ def test_reset_game_state_resets_status_and_history():
     assert state["status"] == "playing"
     assert state["history"] == []
     assert 1 <= state["secret"] <= 100
->>>>>>> 536293a (Fix Streamlit game state bugs and logic refactor)
