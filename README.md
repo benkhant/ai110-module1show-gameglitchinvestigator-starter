@@ -25,13 +25,18 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- [x] Describe the game's purpose.
+  - The game is a number guessing challenge where the player guesses a secret number and gets higher/lower feedback until they win or run out of attempts.
+
+- [x] Detail which bugs you found.
+  - The app had persistent state issues: the secret number could get stale across difficulty changes and new games, and hints were inconsistent. There was also a TypeError from comparing ints and strings and a ValueError from unpacking the wrong return shape.
+  
+- [x] Explain what fixes you applied.
+  - I refactored logic into `logic_utils.py`, fixed `new_game` and difficulty resets to update session state, ensured `check_guess` returns `(outcome, message)`, and updated the UI logic to use these values correctly. I also added and ran pytest regression tests to verify behavior.
 
 ## 📸 Demo
 
-- [ ] [Insert a screenshot of your fixed, winning game here]
+- [x] ![Winning game screenshot](fixed_winning_game.png)
 
 ## 🚀 Stretch Features
 
